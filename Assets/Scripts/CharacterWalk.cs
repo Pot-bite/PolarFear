@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CharacterWalk : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    //movement speed in units per second
+    [SerializeField]
+    private float movementSpeed = 5f;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        //get the Input from Horizontal axis
+        float horizontalInput = Input.GetAxis("Horizontal");
+        //get the Input from Vertical axis
+        float verticalInput = Input.GetAxis("Vertical");
+
+        //update the position
+        if(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.A)|| Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+            transform.position = transform.position + new Vector3(horizontalInput * movementSpeed * Time.deltaTime, verticalInput * movementSpeed * Time.deltaTime, 0);
+
+       
     }
 }
