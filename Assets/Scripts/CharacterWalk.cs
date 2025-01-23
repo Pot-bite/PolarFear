@@ -16,7 +16,13 @@ public class CharacterWalk : MonoBehaviour
     bool isflip = true;
 
     Vector2 movement;
-    
+  
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -33,11 +39,13 @@ public class CharacterWalk : MonoBehaviour
             FlipIt();
         }
        
+        
     }
-
+    
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement * Time.fixedDeltaTime * movementSpeed);
+        
     }
 
     void FlipIt()
