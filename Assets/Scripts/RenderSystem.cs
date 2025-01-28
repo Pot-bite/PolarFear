@@ -19,7 +19,7 @@ public class RenderSystem : MonoBehaviour
     {
         myrender = gameObject.GetComponent<Renderer>();
     }
-
+    
     private void LateUpdate()
     {
         timer -= Time.deltaTime;
