@@ -14,6 +14,7 @@ public class CharacterWalk : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     bool isflip = true;
+    [SerializeField] GameObject HealthBar;
 
     Vector2 movement;
   
@@ -52,5 +53,6 @@ public class CharacterWalk : MonoBehaviour
     {
         isflip = !isflip;
         transform.Rotate(0f, 180f, 0f);
+       
     }
 }
