@@ -8,15 +8,18 @@ public class OwenScript : MonoBehaviour
 
     int MaxValue = 100;
     int currentValue;
+    int ValueController;
     [SerializeField]
     GameObject Button;
     [SerializeField]
     GameObject anim;
-
-    public co2bar DioxideLevel;
+    bool PlayerEntered = false;
+   
+       public co2bar DioxideLevel;
     private void Start()
     {
         currentValue = 50;
+        ValueController = currentValue;
         DioxideLevel.SetMaxValue(MaxValue);
         Button.SetActive(false);
         anim.SetActive(false);
@@ -28,6 +31,20 @@ public class OwenScript : MonoBehaviour
         DioxideLevel.SetValue(currentValue);
     }
 
+    private void Update()
+    {
+        if (PlayerEntered && Input.GetKeyDown(KeyCode.E))
+        {
+            currentValue += 5;
+            if(currentValue > ValueController)
+            {
+                PlayerEntered = false;
+                ValueController = currentValue;
+            }
+            
+        }
+    }
+
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -35,10 +52,10 @@ public class OwenScript : MonoBehaviour
         Button.SetActive(true);
         anim.SetActive(true);
         
-       if (Input.GetKeyDown(KeyCode.E) && collision.gameObject.tag == "Player")
+       if (collision.attachedRigidbody.gameObject.name=="hero")
        {
-         Debug.Log("Hi");
-         currentValue += 5;
+         
+         PlayerEntered = true;
        }
         
     }
